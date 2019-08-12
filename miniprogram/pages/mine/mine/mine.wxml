@@ -1,0 +1,24 @@
+<!--miniprogram/pages/mine/mine/mine.wxml-->
+<view class="customTop" style="height:{{navHeight}}px;"></view>
+<view class="topNav" style="line-height:{{CustomBar-navHeight}}px;">我的</view>
+<!-- 内容 -->
+<scroll-view scroll-y class="container">
+  <button 
+    class="userBox flex center column" 
+    open-type="getUserInfo" 
+    bindgetuserinfo="onGetUserInfo">
+    <view 
+      class="userinfo-avatar"
+      style="background-image: url({{avatarUrl}})">
+    </view>
+    <view class="nickName">{{nickName?nickName:'点击登录'}}</view>
+  </button>
+</scroll-view>
+<!-- 关于 -->
+<view class="aboutBar flex sb shadow-lg">
+  <view class="flex center left text-orange">
+    <view class="cuIcon-peoplefill"></view>
+    <view>关于 zTools</view>
+  </view>
+  <view class="cuIcon-right"></view>
+</view>

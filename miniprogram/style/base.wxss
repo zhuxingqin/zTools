@@ -1,0 +1,20 @@
+/*
+ * flex布局
+ */
+.flex{
+  display: flex;
+}
+.flex.column{
+  flex-direction: column;
+}
+.flex.wrap{
+  flex-flow: wrap;
+}
+.flex.center{
+  justify-content: center;
+  align-items: center;
+}
+.flex.sb{
+  justify-content:space-between;
+  align-items: center;
+}
