@@ -9,9 +9,9 @@
     bindgetuserinfo="onGetUserInfo">
     <view 
       class="userinfo-avatar"
-      style="background-image: url({{avatarUrl}})">
+      style="background-image: url({{userInfo.avatarUrl}})">
     </view>
-    <view class="nickName">{{nickName?nickName:'点击登录'}}</view>
+    <view class="nickName">{{userInfo.nickName?userInfo.nickName:'点击登录'}}</view>
   </button>
 </scroll-view>
 <!-- 关于 -->
