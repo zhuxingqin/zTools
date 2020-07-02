@@ -1527,9 +1527,10 @@ button.icon.lg {
 
 .cu-list.card-menu {
 	overflow: hidden;
-	margin-right: 30rpx;
-	margin-left: 30rpx;
-	border-radius: 20rpx
+	padding: 30rpx;
+	/* margin-right: 30rpx; */
+	/* margin-left: 30rpx; */
+	/* border-radius: 20rpx */
 }
 
 
@@ -3938,4 +3939,7 @@ scroll-view.cu-steps .cu-item {
 .line-white,
 .lines-white {
 	color: var(--white);
+}
+.scrollPage {
+  height: 100vh;
 }

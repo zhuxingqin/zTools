@@ -1,18 +1,11 @@
 {
   "pages": [
-    "pages/mine/mine/mine",
     "pages/home/home/home",
-    "pages/index/index",
-    "pages/userConsole/userConsole",
-    "pages/storageConsole/storageConsole",
-    "pages/databaseGuide/databaseGuide",
-    "pages/addFunction/addFunction",
-    "pages/deployFunctions/deployFunctions",
-    "pages/chooseLib/chooseLib",
-    "pages/openapi/openapi",
-    "pages/openapi/serverapi/serverapi",
-    "pages/openapi/callback/callback",
-    "pages/openapi/cloudid/cloudid"
+    "pages/home/workArea/workArea",
+    "pages/home/doneList/doneList",
+    "pages/home/log/log",
+    "pages/tools/calculator/calculator",
+    "pages/tools/memorandum/memorandum"
   ],
   "window": {
     "navigationBarBackgroundColor": "#39b54a",
@@ -21,7 +14,20 @@
     "navigationBarTextStyle": "white"
   },
   "usingComponents": {
-    "cu-custom": "/colorui/components/cu-custom"
+    "cu-custom": "/colorui/components/cu-custom",
+    "popup": "/component/vant/popup/index",
+    "field": "/component/vant/field/index",
+    "popup-add-todo": "/component/popup-add-todo/index",
+    "loading": "/component/vant/loading/index",
+    "add-btn": "/component/addBtn/addBtn",
+    "check": "/component/check/check",
+    "note": "/component/note/note",
+    "check-round": "/component/checkRound/checkRound",
+    "selected-part": "/component/selectedPart/selectedPart",
+    "time-picker": "/component/timePicker/timePicker",
+    "todo-box": "/component/todoBox/todoBox",
+    "overlay": "/component/vant/overlay/index",
+    "add-workarea": "/component/addWorkArea/addWorkArea"
   },
   "sitemapLocation": "sitemap.json"
 }

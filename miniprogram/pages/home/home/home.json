@@ -1,3 +1,7 @@
 {
-  "usingComponents": {}
+  "usingComponents": {
+    "time-box":"/component/timeBox/timeBox",
+    "part-box":"/component/partBox/partBox",
+		"drag": "/component/x-drag/index"
+  }
 }

@@ -1,2 +1,128 @@
 <!--miniprogram/pages/home/home/home.wxml-->
-<text>miniprogram/pages/home/home/home.wxml</text>
+<cu-custom 
+  isHome 
+  loading="{{loading}}"
+  modalName="{{modalName}}" 
+  avatarUrl="{{userInfo.avatarUrl}}" 
+  bind:showModal="showModal"
+  bind:hideModal="hideModal">
+</cu-custom>
+
+<scroll-view scroll-y class="DrawerPage {{modalName=='viewModal'?'show':''}}" scroll-with-animation>
+  <view class="dragWrap" style="padding-top:{{CustomBar}}px;">
+    <drag id="drag"
+      bind:change="change"
+      bind:sortend="sortEnd"
+      bind:addWorkAreaCallback="addWorkAreaCallback"
+      list-data="{{workAreaList}}"
+      columns="{{size}}"
+      bottom-size="{{isIphoneX ? 380 : 300 }}">
+    </drag>
+  </view>
+  <view class="timeBlock">
+    <time-box 
+      item="{{item}}" 
+      wx:for="{{timeInfo}}" 
+      wx:key="index"  
+      bind:showDetail="showDetail" 
+      bind:scroll="scroll" 
+      bind:unShowDetail="unShowDetail" 
+      bind:loadMore="loadMore" 
+      bind:changeCheckOut="changeCheckOut" 
+      timeIndex="{{index}}" 
+      bind:importantChange="importantChange"/>
+  </view>
+  <view class="block">
+  </view>
+  <view class="donePageBtn" catchtap="donePageBtn">显示已完成列表</view>
+  <add-btn bind:addPart="addWorkArea" showAddBtn="{{showAddBtn}}"/>
+  <add-workarea show="{{showAddWorkArea}}" bind:close="closeAddWorkArea"/>
+</scroll-view>
+<view class="DrawerClose {{modalName=='viewModal'?'show':''}}" bindtap="hideModal">
+  <!-- <text class="cuIcon-pullright"></text> -->
+</view>
+<!-- 左侧 用户模块 -->
+<scroll-view scroll-y class="DrawerWindow {{modalName=='viewModal'?'show':''}}">
+  <view class="cu-list menu card-menu shadow-lg">
+    <button 
+      class="userBox flex center column" 
+      open-type="getUserInfo" 
+      bindgetuserinfo="onGetUserInfo"
+      style="padding-top:{{CustomBar + 25}}px;">
+      <view 
+        wx:if="{{userInfo}}"
+        class="userinfo-avatar"
+        style="background-image: url({{userInfo.avatarUrl}})">
+      </view>
+      <image
+        wx:else 
+        class="user-unlogin"
+        src="/images/user-unlogin.png">
+      </image>
+      <view class="nickName">{{userInfo.nickName?userInfo.nickName:'点击登录'}}</view>
+    </button>
+    <view class="noteBox" style="{{noteObj.important?'':'height:250rpx'}}">
+      <note item="{{noteObj}}" wx:if="{{noteObj.important}}" bind:notechange="notechange" />
+    </view>
+    <view class="outbox">
+      <!-- 小工具 -->
+      <view class="tools">
+        <view class="title">小工具</view>
+        <view class='nav-list'>
+          <navigator open-type="navigate" hover-class='none' url="/pages/tools/{{item.name}}/{{item.name}}" class="nav-li bg-{{item.color}}" wx:for="{{elements}}" wx:key>
+            <view class="nav-title">{{item.title}}</view>
+            <view class="nav-name">{{item.name}}</view>
+            <text class='cuIcon-{{item.icon}}'></text>
+          </navigator>
+        </view>
+      </view>
+      <!-- 关于 -->
+      <view class="list">
+        <!-- <view class="item flex sb shadow-lg" hover-class="hover">
+          <view class="flex center left">
+            <view class="cuIcon-formfill text-green icon"></view>
+            <view class="text">更新日志</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </view> -->
+        <view class="item flex sb shadow-lg" hover-class="hover" bindtap="jumpToUpdatePage">
+          <view class="flex center left">
+            <view class="cuIcon-formfill icon text-blue"></view>
+            <view class="text">更新日志</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </view>
+        <button class="none item flex sb shadow-lg" open-type="share" role="button" aria-disabled="false" hover-class="hover">
+          <view class="flex center left">
+            <view class="cuIcon-share text-pink icon"></view>
+            <view class="text">推荐给好友</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </button>
+        <button class="none item flex sb shadow-lg" open-type="contact" role="button" aria-disabled="false" hover-class="hover">
+          <view class="flex center left">
+            <view class="cuIcon-emojifill icon text-yellow"></view>
+            <view class="text">联系作者</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </button>
+        <view class="item flex sb shadow-lg" hover-class="hover" bindtap="showQrcode">
+          <view class="flex center left">
+            <view class="cuIcon-appreciatefill icon text-red"></view>
+            <view class="text">赞赏支持</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </view>
+        <view class="item flex sb shadow-lg" hover-class="hover" catchtap="jumpAbout">
+          <view class="flex center left">
+            <view class="cuIcon-peoplefill icon text-cyan"></view>
+            <view class="text">关于zTodo</view>
+          </view>
+          <view class="cuIcon-right"></view>
+        </view>
+      </view>
+    </view>
+    
+  </view>
+</scroll-view>
+

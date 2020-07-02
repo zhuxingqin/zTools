@@ -14,7 +14,15 @@ Component({
     bgColor: {
       type: String,
       default: ''
-    }, 
+    },
+    style:{
+      type:String,
+      default:''
+    },
+    isHome:{
+      type: [Boolean, String],
+      default: false
+    },
     isCustom: {
       type: [Boolean, String],
       default: false
@@ -27,6 +35,18 @@ Component({
       type: String,
       default: ''
     },
+    avatarUrl:{
+      type: String,
+      default: ''
+    },
+    modalName: {
+      type: String,
+      default: null,
+    },
+    loading:{
+      type:Boolean,
+      default:false
+    }
   },
   /**
    * 组件的初始数据
@@ -49,6 +69,12 @@ Component({
       wx.reLaunch({
         url: '/pages/index/index',
       })
-    }
+    },
+    showModal(){
+      this.triggerEvent('showModal', { target: 'viewModal'});
+    },
+    hideModal(){
+      this.triggerEvent('hideModal');
+    },
   }
 })

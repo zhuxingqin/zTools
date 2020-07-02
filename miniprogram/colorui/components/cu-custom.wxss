@@ -1,1 +1,17 @@
 /* colorui/components/cu-custom.wxss */
+.action .avatar{
+  border-radius: 50%;
+  width: 60rpx;
+  height: 60rpx;
+}
+.action .cuIcon-pullright{
+  color: #fff;
+  font-size: 60rpx !important;
+}
+.cuIcon-back{
+  font-size: 50rpx !important;
+  color: #8A8F9E;
+}
+/* .cu-custom{
+  background: linear-gradient(to bottom, rgb(230, 230, 230), rgb(235, 235, 235,0)) ;
+} */

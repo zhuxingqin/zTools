@@ -10,7 +10,9 @@
 .gif-white{  
   mix-blend-mode: multiply; 
 }
-
+.infinite{
+  animation-iteration-count:infinite;
+}
 
 /* Animation css */
 [class*=animation-] {

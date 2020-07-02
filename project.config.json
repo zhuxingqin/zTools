@@ -4,15 +4,33 @@
 	"setting": {
 		"urlCheck": true,
 		"es6": true,
+		"enhance": false,
 		"postcss": true,
 		"minified": true,
-		"newFeature": true
+		"newFeature": true,
+		"coverView": true,
+		"autoAudits": false,
+		"uglifyFileName": true,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		},
+		"useIsolateContext": true,
+		"useCompilerModule": false,
+		"userConfirmedUseCompilerModuleSwitch": false,
+		"compileHotReLoad": false,
+		"scopeDataCheck": false
 	},
-	"appid": "wxe05e36b03e251a6b",
-	"projectname": "zTools",
-	"libVersion": "2.8.0",
+	"appid": "wx44981d36a7803fb6",
+	"projectname": "极简待办zTodo",
+	"libVersion": "2.11.1",
 	"simulatorType": "wechat",
 	"simulatorPluginLibVersion": {},
+	"cloudfunctionTemplateRoot": "cloudfunctionTemplate",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -29,8 +47,12 @@
 		"game": {
 			"list": []
 		},
+		"gamePlugin": {
+			"current": -1,
+			"list": []
+		},
 		"miniprogram": {
-			"current": 1,
+			"current": 2,
 			"list": [
 				{
 					"id": -1,
@@ -42,6 +64,35 @@
 					"id": -1,
 					"name": "微信教程",
 					"pathName": "pages/index/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": 2,
+					"name": "workArea",
+					"pathName": "pages/home/workArea/workArea",
+					"query": "wid=b05d218a5ecf7d9d004638e0463f1035&wname=项目",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/test",
+					"pathName": "pages/test/test",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/home/doneList/doneList",
+					"pathName": "pages/home/doneList/doneList",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/tools/calculator/calculator",
+					"pathName": "pages/tools/calculator/calculator",
+					"query": "wid=b05d218a5ecf7d9d004638e0463f1035&wname=项目",
 					"scene": null
 				}
 			]
