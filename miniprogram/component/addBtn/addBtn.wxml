@@ -1,0 +1,26 @@
+<!--component/addBtn/addBtn.wxml-->
+<view class="bgModal" hidden="{{!adding}}" catchtap="addWin"></view>
+<view class="addBtn {{adding?'on':''}} {{showAddBtn?'show':''}}" catchtap="addWin">
+  <view class="cuIcon-add" wx:if="{{!adding}}"></view>
+  <view class="ul" wx:else>
+    <view class="li" hover-class="hover" catchtap="addTodo">
+      <image class="icon" src="/images/icon-add.png"></image>
+      <view class="right">
+        <view class="title">新建待办事项</view>
+        <view class="tips">向日常区域快速添加待办事项</view>
+      </view>
+    </view>
+    <view class="li" hover-class="hover" catchtap="addPart">
+      <image class="icon" src="/images/icon-box.png"></image>
+      <view class="right">
+        <view class="title">添加负责区域</view>
+        <view class="tips">根据不同的责任群 组成您的分区</view>
+      </view>
+    </view>
+  </view>
+</view>
+<popup-add-todo bind:before-enter="beforeAddTodo" show="{{addTodo}}" class="addTodo" bind:close="closePopup" wid="{{wid}}" wname="{{wname}}">
+</popup-add-todo>
+
+<popup-add-workarea show="{{addWorkArea}}" class="addWorkArea" bind:close="closePopup" >
+</popup-add-workarea>

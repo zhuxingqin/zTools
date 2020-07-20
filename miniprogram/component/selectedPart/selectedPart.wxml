@@ -1,0 +1,27 @@
+<!--component/selectedPart/slectedPart.wxml-->
+<popup show="{{show}}" round bind:close="close" safe-area-inset-top class="partWindow" overlay-style="background-color: rgba(0, 0, 0, .2);">
+  <view class="title">负责区域</view>
+  <view class="cuIcon-close" catchtap="close"></view>
+  <view class="loadingBox" wx:if="{{partList.length==0}}">
+    <loading color="#5B9CF7" custom-class="loading" size="50px"/>
+  </view>
+  <scroll-view scroll-y class="list" wx:else>
+    <view class="item" wx:if="{{showAddWorkArea}}">
+      <view class="left">
+        <image class="icon" src="/images/icon-box.png"></image>
+        <input class="name" value="{{wnameInp}}" placeholder="输入区域名称" focus="{{showAddWorkArea}}" bindinput="bindinput"></input>
+      </view>
+      <!-- <view class="cuIcon-check" hidden="{{wid!=item._id}}"></view> -->
+    </view>
+    <view class="item" wx:for="{{partList}}" wx:key data-item="{{item}}" catchtap="choose">
+      <view class="left">
+        <image class="icon" src="/images/icon-box.png"></image>
+        <view class="name e1">{{item.name}}</view>
+      </view>
+      <view class="cuIcon-check" hidden="{{wid!=item._id}}"></view>
+    </view>
+  </scroll-view>
+  <view class="btn" catchtap="addPartConfirm">{{!showAddWorkArea?'添加负责区域':'完成'}}</view>
+  <!-- <add-workarea show="{{showAddWorkArea}}" bind:close="closeAddWorkArea" bind:done="getWorkArea"/> -->
+</popup>
+

@@ -1,0 +1,21 @@
+<!--component/note/note.wxml-->
+<view class="note" style="background-color:#{{item.realColor}};">
+  <view class="topBar" style="background-color:#{{item.showColor}};">
+    <view class="left">
+      <view class="cuIcon-colorlens" catchtap="colorPicker"></view>
+    </view>
+    <view class="right">
+      <view class="cuIcon-clear" bindtap="clear">
+        <image src="../../images/clear.png" mode="aspectFit"></image>
+      </view>
+      <view class="cuIcon-close" catchtap="close"></view>
+    </view>
+    <view hidden="{{!colorPicker}}" class="colorPicker animation-{{colorPicker?'slide-top':''}}" >
+      <view class="color" style="background-color:#{{item.showColor}};" wx:for="{{colorList}}" wx:key catchtap="colorChange" data-color="{{item}}"></view>
+    </view>
+  </view>
+  <view class="content">
+    <textarea class="noteinp" maxlength="-1" placeholder="便签..." value="{{item.note}}" bindinput="noteinp" bindblur="blur" auto-height></textarea>
+  </view>
+  <!-- <view class="bottomBar"></view> -->
+</view>

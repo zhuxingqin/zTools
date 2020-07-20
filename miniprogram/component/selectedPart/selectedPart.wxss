@@ -1,0 +1,71 @@
+/* component/selectedPart/slectedPart.wxss */
+.partWindow>view{
+  border-radius: 20rpx;
+  background-color: #252E35;
+  height: 70vh;
+  width: 90vw;
+  color: #fff;
+  font-size: 32rpx;
+  padding-bottom: 140rpx;
+}
+.partWindow>view>.title{
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.partWindow>view>.cuIcon-close{
+  position: absolute;
+  top: 20rpx;
+  right: 20rpx;
+  font-size: 40rpx;
+  color: #cdcdcd;
+  border-radius: 50%;
+}
+.partWindow>view>.loadingBox{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc( 100% - 80rpx );
+}
+.partWindow>view>.list{
+  height: calc( 100% - 80rpx );
+  padding: 0 20rpx;
+}
+.partWindow>view>.list .item{
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1rpx solid #666;
+  height: 100rpx;
+  padding: 0 10rpx;
+}
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 10rpx;
+}
+.cuIcon-check{
+  color: #5C9AF2;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+.partWindow>view>.list .item>.left{
+  display: flex;
+  align-items: center;
+}
+.btn{
+  background-color: #5C9AF2;
+  width: 90%;
+  line-height: 80rpx;
+  font-size: 35rpx;
+  color: #fff;
+  text-align: center;
+  position: absolute;
+  bottom: 30rpx;
+  left: 5%;
+  border-radius: 15rpx;
+}
+add-workarea{
+  color: unset;
+}

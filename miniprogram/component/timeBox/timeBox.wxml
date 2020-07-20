@@ -1,0 +1,39 @@
+<!--component/timeBox.wxml-->
+<view class="timeInfo">
+  <view class="title flex sb" bindtap="toggleDelay">
+    <view class="left flex ai-center">
+      <text 
+        class="cuIcon-favorfill icon" 
+        style="color:#FFDA14;" 
+        wx:if="{{item.name=='今天'}}"></text>
+      <text 
+        class="cuIcon-timefill icon" 
+        style="color:#4DACA6;" 
+        wx:if="{{item.name=='随时'}}"></text>
+      <text 
+        class="cuIcon-activityfill icon" 
+        style="color:#FA346E;" 
+        wx:if="{{item.name=='计划'}}"></text>
+      <text class="name">{{item.name}}</text>
+    </view>
+    <view class="num"></view>
+  </view>
+  <view >
+    <todo-box 
+      wx:for="{{item.todoList}}" 
+      wx:for-item="todo" 
+      wx:key="index" item="{{todo}}" 
+      bind:showDetail="showDetail" 
+      bind:scroll="scroll" 
+      bind:unShowDetail="unShowDetail" 
+      bind:changeCheckOut="changeCheckOut" 
+      index="{{index}}" 
+      toggleDelay="{{item.toggleDelay}}"
+      bind:importantChange="importantChange"/>
+  </view>
+  <view wx:if="{{item.more}}" class="more" catchtap="loadMore">—— 显示更多 ——</view>
+  <view class="flex center nothing" hidden="{{item.todoList.length>0}}">
+    <view class="cuIcon-infofill icon" ></view>
+    <view>没有{{item.name}}要做的事～</view>
+  </view>
+</view>

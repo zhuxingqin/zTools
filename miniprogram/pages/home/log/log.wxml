@@ -1,0 +1,45 @@
+<cu-custom isBack="{{true}}"><view slot="backText">返回</view><view slot="content">更新日志</view></cu-custom>
+<view class="cu-timeline">
+  <view class="cu-item text-blue">
+    <view class="bg-gradual-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.1.1</view>
+        <view class="cu-tag line-white">2020/07/08</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.可为任务设置颜色标记 (可长按)。</view>
+      </view>
+    </view>   
+  </view>
+</view>
+<view class="cu-timeline">
+  <view class="cu-item text-blue">
+    <view class="bg-gradual-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.1.0</view>
+        <view class="cu-tag line-white">2020/06/18</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.添加小工具模块</view>
+        <view>2.新增计算器小工具</view>
+        <view>3.新增更新日志页面</view>
+      </view>
+    </view>   
+  </view>
+</view>
+<view class="cu-timeline">
+  <view class="cu-item text-blue">
+    <view class="bg-gradual-blue content shadow">
+      <view class="cu-capsule radius">
+        <view class="cu-tag bg-white text-blue">v1.0.0</view>
+        <view class="cu-tag line-white">2020/06/17</view>
+      </view>
+      <view class="margin-top-sm text-content">
+        <view>1.优化小程序首次启动速度</view>
+        <view>2.首页底部添加"已完成列表页面"入口</view>
+        <view>3.修改新增区域的方式</view>
+        <view>4.新增提醒功能</view>
+      </view>
+    </view>   
+  </view>
+</view>

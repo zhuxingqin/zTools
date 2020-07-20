@@ -1,0 +1,66 @@
+<view class="item-wrap" >
+	<scroll-view
+		scroll-x
+		style="position: relative"
+		bindscroll="scroll"
+		scroll-with-animation
+		scroll-left="{{scrollLeft}}"
+		style="overflow: unset;">
+		<view id="item-wrap" class="item-wrap " style="{{wrapStyle}}">
+			<view
+				wx:show="{{dragging}}"
+				class="{{animation?'animation-scale-up':''}} item {{index != currentIndex?'transition_switch':''}}"
+				wx:for="{{list}}"
+				wx:key="id"
+				data-key="{{item.sortKey}}"
+				data-index="{{index}}"
+				style="animation-delay:{{(index+1)*0.1}}s; top:20px;left:{{item.tranX*135}}px;width:135px;opacity:{{dragging && index==currentIndex?'0':'1'}};">
+				<!-- style="opacity:{{currentIndex==index && dragging?'0':'1'}}; animation-delay:{{(index+1)*0.1}}s; transform: translate3d({{item.tranX }},{{item.tranY}}, 0);width: 270rpx;"> -->
+				<view class="partBox">
+					<view class="count" wx:if="{{item.data.count>0}}">{{item.data.count}}</view>
+					<view class="name e1" wx:if="{{item.data.name}}">{{item.data.name}}</view>
+					<input wx:else bindinput="partNameInp" bindconfirm="addPartConfirm" focus="focus" bindblur="closePart" placeholder="区域名称"></input>
+					<view class="listBox">
+						<view class="noTodo" wx:if="{{!item.data.todoList.length>0}}">
+							<image src="../../images/notodo.png" mode="aspectFit"></image>
+						</view>
+						<view class="todo e1" wx:for="{{item.data.todoList}}" wx:for-item="todo" wx:if="{{i<4}}" wx:for-index="i" wx:key="i">{{todo.title}}</view>
+						<view class="more" wx:if="{{item.data.count==0}}">无任务</view>
+						<view class="more" wx:elif="{{item.data.count>4}}">查看全部</view>
+					</view>
+				</view>
+				<!-- end:请在该区域编写自己的渲染逻辑 -->
+				<!-- <view class="item">
+					<view class="partBox add" wx:if="{{addPart}}">
+      			<input bindinput="partNameInp" bindconfirm="addPartConfirm" focus="addPart" bindblur="closePart" placeholder="区域名称"></input>
+    			</view>
+				</view> -->
+			</view>
+			<view style="position: absolute;z-index: 2;top: 0;left: 0;width: 100%;height: 100%;"
+						bind:longpress="longPress"
+						bindtouchstart="touchStart"
+						catch:touchmove="{{dragging?'touchMove':''}}"
+						catch:touchend="{{dragging?'touchEnd':''}}"
+						catchtap="goWorkArae"
+						id="touch">
+			</view>
+		</view>
+	</scroll-view>
+		<view wx:if="{{dragging}}"
+				class="item {{transition?'transition_switch':''}}"
+				style="top:{{dragging? tranY:20}}px;left:{{tranX}}px;width:135px;">
+				<view class="partBox">
+					<view class="count" wx:if="{{currentItem.data.count>0}}">{{currentItem.data.count}}</view>
+					<view class="name e1">{{currentItem.data.name}}</view>
+					<view class="listBox">
+						<view class="noTodo" wx:if="{{!currentItem.data.todoList.length>0}}">
+							<image src="../../images/notodo.png" mode="aspectFit"></image>
+						</view>
+						<view class="todo e1" wx:for="{{currentItem.data.todoList}}" wx:for-item="todo" wx:for-index="i" wx:key="i">{{todo.title}}</view>
+						<view class="more" wx:if="{{currentItem.data.count==0}}">无任务</view>
+						<view class="more" wx:elif="{{currentItem.data.count>4}}">查看全部</view>
+					</view>
+				</view>
+				<!-- end:请在该区域编写自己的渲染逻辑 -->
+			</view>
+</view>

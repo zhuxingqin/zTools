@@ -1,0 +1,281 @@
+/* component/todoBox/todoBox.wxss */
+.bg{
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: rgba(0, 0, 0, .0);
+  z-index: 2;
+  transform: all .4s;
+}
+.bg.show{
+  background-color: rgba(0, 0, 0, .13);
+}
+.todoOutBox{
+  min-height: 80rpx;
+}
+.todoBox{
+  background-color: #fff;
+  padding: 20rpx 0 20rpx 10rpx;
+  transition: all .4s;
+  position: relative;
+  left: 0;
+  /* top:0; */
+  /* overflow: hidden; */
+  border-radius: 10rpx;
+}
+.todoBox.important:not(.show){
+  background-color: #cce6ff;
+}
+.todoBox.show{
+  box-shadow:  0rpx 0rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  width: 100vw;
+  padding: 30rpx;
+  left: -20rpx;
+  border-radius: 20rpx;
+  z-index: 2;
+}
+.todoBox>.unShowBox{
+  transition: all .4s;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+.todoBox>.unShowBox.check>.right>.title{
+  color: #999;
+  text-decoration:line-through;
+}
+.todoBox>.unShowBox>.left{
+  margin-right: 15rpx;
+  width: 40rpx;
+}
+.todoBox>.unShowBox>.right{
+  transition: all .4s;
+  width: calc( 100% - 55rpx );
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 30rpx;
+}
+.todoBox>.unShowBox.check>.right>.title{
+  transition: all .4s;
+}
+.todoBox>.unShowBox>.right>.cuIcon-list{
+  color: #999;
+  margin-left: 10rpx;
+  font-size: 30rpx;
+}
+.todoBox>.unShowBox>.right>.time{
+  white-space: nowrap;  
+  color: #999;
+  font-size: 25rpx;
+  margin-left: 10rpx;
+}
+/* .todoBox>.unShowBox>.delBtn{
+  width: 50rpx;
+  height: 50rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  right: -130rpx;
+  border-radius: 50%;
+  transition: all .5s;
+} */
+/* .todoBox>.unShowBox>.delBtn.show{
+  right: 0;
+} */
+
+/* 展开待办窗口 */
+.todoBox>.showBox{
+  position: relative;
+  min-height: 490rpx;
+  padding-bottom: 60rpx;
+}
+.todoBox>.showBox .content{
+  transition: all .4s;
+  /* padding: 0 20rpx 0 20rpx; */
+  /* height: 420rpx; */
+  display: flex;
+  align-items: flex-start;
+  vertical-align: text-top;
+  justify-content: flex-start;
+}
+.todoBox>.showBox .content .left{
+  vertical-align: text-top;
+  width: 40rpx;
+  height: 100%;
+  display: inline-block;
+}
+.todoBox>.showBox .content .right{
+  vertical-align: text-top;
+  display: inline-block;
+  /* height: calc( 100% - 50rpx ); */
+  /* min-height: calc( 100% - 80rpx ); */
+  /* max-height: 300rpx; */
+  /* height: 100%; */
+  padding-left: 20rpx;
+  width: calc( 100% - 40rpx );
+}
+.todoBox>.showBox .content .right .placeholder{
+  color: #cdcdcd;
+}
+.todoBox>.showBox .content .right .topBlock{
+  /* min-height: calc( 100% - 80rpx ); */
+  min-height: 100%;
+  width: 100%;
+}
+.todoBox>.showBox .content .right .topBlock .title{
+  font-size: 32rpx;
+}
+.todoBox>.showBox .content .right .topBlock .note{
+  margin: 20rpx 0;
+}
+.todoBox>.showBox .content .right .topBlock .list{
+  margin-bottom: 20rpx;
+  max-height: 400rpx;
+}
+.todoBox>.showBox .content .right .topBlock .list .item.focus{
+  background-color: #F6F6F5;
+  border-radius: 15rpx;
+}
+.todoBox>.showBox .content .right .topBlock .list .item.check textarea{
+  color: #666;
+}
+.todoBox>.showBox .content .right .topBlock .list .item{
+  transition: all .4s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  padding: 20rpx 15rpx;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.todoBox>.showBox .content .right .topBlock .list .item>.itemLeft{
+  width: 45rpx;
+  margin-right: 10rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.todoBox>.showBox .content .right .topBlock .list .item>.itemRight{
+  width: calc( 100% - 100rpx );
+}
+.todoBox>.showBox .content .right .topBlock .list .item>.itemClose{
+  width: 45rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 40rpx;
+}
+.todoBox>.showBox .content .right .topBlock .list .item>.itemRight>textarea{
+  padding: 0;
+  width: 100%;
+  font-size: 28rpx;
+}
+.todoBox>.showBox .bar{
+  position: absolute;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: calc( 100% - 60rpx );
+  height: 60rpx;
+  left: 60rpx;
+  bottom: 0rpx;
+  /* padding-bottom: 20rpx; */
+}
+.todoBox>.showBox .bar>.b-l{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.todoBox>.showBox .bar>.b-l>.icon{
+  margin-right: 10rpx;
+  font-size: 37rpx;
+}
+.todoBox>.showBox .bar>.b-l>.noticeText,.todoBox>.showBox .bar>.b-l>.cuIcon-noticefill{
+  color: #cdcdcd;
+}
+.todoBox>.showBox .bar>.b-r{
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 45rpx;
+}
+.todoBox>.showBox .bar>.b-r>.icon{
+  position: relative;
+}
+.todoBox>.showBox .bar>.b-r>.icon:not(:first-child){
+  margin-left: 20rpx;
+}
+.todoBox>.showBox .bottomBar{
+  width: 100%;
+  height: 80rpx;
+  background-color: #F4F5F6;
+  border-top: 1px solid #E1E3E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+}
+.todoBox>.showBox .partClass{
+  box-shadow:  0rpx 0rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  color: #fff;
+  line-height: 70rpx;
+  position: absolute;
+  z-index: 3;
+  top: -120rpx;
+  right: -10rpx;
+  background-color: #5B9CF7;
+  border-radius: 15rpx;
+  height: 70rpx;
+  padding: 0 20rpx;
+  /* color: #5B9CF7; */
+  font-size: 32rpx;
+  /* margin-left: 20rpx; */
+}
+.todoBox>.showBox .bottomBar .btn{
+  background-color: #5B9CF7;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+}
+.todoBox>.showBox>.delBtn{
+  border-radius: 15rpx;
+  background-color: #F76759;
+  margin-right: 20rpx;
+  position: absolute;
+  bottom: -120rpx;
+  right: -185rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20rpx;
+  color: #fff;
+  box-shadow: 0rpx 0rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  transition: all .3s;
+}
+.todoBox>.showBox>.delBtn.confirm{
+  background-color: #F4311F;
+  right: -30rpx;
+}
+.todoBox>.showBox>.delBtn>.icon{
+  font-size: 35rpx;
+  height: 70rpx;
+  width: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.none{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+}

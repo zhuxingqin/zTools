@@ -1,0 +1,13 @@
+<!--component/addWorkArea/addWorkArea.wxml-->
+<popup show="{{show}}" round bind:close="close" safe-area-inset-top class="partWindow " overlay-style="background-color: rgba(0, 0, 0, .3);" >
+  <view class="partBox animation-{{show?'scale-up':''}}" style="animation-delay:0s;">
+    <input bindinput="partNameInp" bindconfirm="addPartConfirm" focus="{{show}}" placeholder="区域名称" value="{{wname}}"></input>
+    <view class="listBox">
+      <view class="noTodo">
+        <image src="../../images/notodo.png" mode="aspectFit"></image>
+      </view>
+      <!-- <view class="more">无任务</view> -->
+    </view>
+  </view>
+  <view class="btn animation-{{show?'scale-up':''}}" style="animation-delay:.1s;" catchtap="addPartConfirm">完成</view>
+</popup>

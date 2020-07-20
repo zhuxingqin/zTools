@@ -1,0 +1,134 @@
+.marked {
+  position: relative; }
+  .marked:after {
+    position: absolute;
+    content: "";
+    left: 0;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    z-index: 111;
+    background: rgba(0, 0, 0, 0.3); }
+
+.item-wrap {
+  position: relative;
+  height: 400rpx;
+  overflow: unset;
+}
+  .item-wrap .item {
+    position: absolute;
+    width: 100%;
+    top: 40rpx;
+    z-index: 1; 
+    display: flex;
+    justify-content: center;
+  }
+    .item-wrap .item.transition,.item-wrap .item.transition_switch {
+      transition: 0.3s all !important;
+    }
+    /* .position{
+      top: 0;
+    } */
+.cell {
+  display: flex;
+  padding: 20rpx;
+  border-bottom: 1rpx solid #ebedf0;
+  background: #FFFFFF; }
+  .cell__hd {
+    font-size: 0; }
+    .cell__hd .image {
+      width: 160rpx;
+      height: 160rpx;
+      margin-right: 20rpx;
+      border-radius: 12rpx; }
+  .cell__bd {
+    flex: 1; }
+    .cell__bd .name {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      word-break: break-all;
+      font-size: 28rpx;
+      margin-bottom: 4rpx; }
+    .cell__bd .des {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      word-break: break-all;
+      color: #666666;
+      font-size: 24rpx; }
+.partBox{
+  background-color: #fff;
+  border-radius: 20rpx;
+  height: 300rpx;
+  box-shadow:  0rpx 25rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  min-width: 125px;
+  width: 125px;
+  padding: 15rpx;
+  display: inline-block;
+  vertical-align:middle;
+  position: relative;
+}
+      
+.partBox .name{
+  font-size: 40rpx;
+}
+.partBox.add{
+  margin-right: 200rpx;
+}
+.partBox>input{
+  font-size: 40rpx;
+}
+.partBox>.count{
+  position: absolute;
+  width: 50rpx;
+  height: 50rpx;
+  right: -10rpx;
+  top: -10rpx;
+  border-radius: 50%;
+  background-color: #5D9CF6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 32rpx;
+}
+.listBox{
+  margin-top: 15rpx;
+  font-size: 25rpx;
+}
+.listBox>.todo{
+  line-height: 40rpx;
+  font-size: 20rpx;
+}
+.listBox>.more{
+  color: #cdcdcd;
+  text-align: center;
+  width: calc(100% - 30rpx);
+  position: absolute;
+  bottom: 20rpx;
+}
+.listBox>.noTodo{
+  width: calc(100% - 30rpx);
+  position: relative;
+  overflow: hidden;
+}
+.listBox>.noTodo>image{
+  height: 150rpx;
+  margin-left: -25rpx;
+  margin-top: -16rpx;
+}
+.e1{
+  text-overflow: -o-ellipsis-lastline;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+.animation-scale-up {
+  animation-name: scale-up
+}

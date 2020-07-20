@@ -1,0 +1,61 @@
+<!--miniprogram/pages/home/doneList/doneList.wxml-->
+<cu-custom isBack="{{true}}" style="{{style}}">
+  <view slot="backText">返回</view>
+  <view slot="content">已完成列表时间线</view>
+  <!-- <view slot="content">微动画</view> -->
+</cu-custom>
+<view class="cu-timeline" wx:for="{{tltl}}" wx:key>
+  <view class="cu-time">{{item.dateText=='NaN月NaN日'?'更早之前':item.dateText}}</view>
+  <view class="cu-item text-blue" wx:for="{{item.todoList}}" wx:key="i" wx:for-index="i" wx:for-item="todo">
+    <view class="content">
+      <view class="cu-capsule radius" style="margin-bottom:20rpx;">
+        <view class="cu-tag bg-cyan">{{todo.DON}}</view>
+        <view class="cu-tag line-cyan">{{todo.timeText=='NaN:NaN'?'00:00':todo.timeText}}</view>
+      </view>
+      <view class="todoBox" item="{{todo}}">
+        <view class="content">
+        <view class="left">
+          <check check="{{todo.state}}" 
+          data-todoindex="{{i}}" 
+          data-timeindex="{{index}}" catchtap="changeCheck" />
+        </view> 
+        <view class="right">
+          <view class="topBlock">
+            <view class="title">{{todo.title}}</view>
+            <view class="note">{{todo.note}}</view>
+            <!-- 子列表 -->
+            <view class="list">
+              <view wx:for="{{todo.list}}" wx:for-item="childTodo" wx:key="index" class="item {{todo.state?'check':''}}" >
+                <view class="itemLeft">
+                  <check-round check="{{childTodo.state}}" catchtap="changeListCheck" data-index="{{index}}"/>
+                </view>
+                <view class="itemRight">
+                  <view style="{{childTodo.state?'color:#999;':''}}" >{{childTodo.content}}</view>
+                  <!-- <textarea maxlength="-1" auto-height value="{{todo.content}}" placeholder="子任务" placeholder-class="placeholder" focus="{{index==focusList}}" bindfocus="changeFocus" bindblur="blurFocus" bindinput="itemInp" data-index="{{index}}"  ></textarea> -->
+                </view>
+                <!-- <view class="itemClose">
+                  <view class="cuIcon-roundclose" catchtap="delItem" data-index="{{index}}"></view>
+                </view> -->
+              </view>
+            </view>
+          </view>
+          <!-- 功能按钮 -->
+          <view class="bar">
+            <view class="b-l" catchtap="openTimePicker">
+              <view class="workarea">{{todo.wname}}</view>
+              <text class="timeText" style="margin-right:20rpx; color:#999;font-sice:25rpx;">{{todo.noticeDateText}}</text>
+              <!-- <text class="cuIcon-noticefill icon" wx:if="{{timeObj.noticeText}}"></text> -->
+              <!-- <text wx:if="{{timeObj.noticeText}}" class="noticeText">{{noticeDateText}}</text> -->
+            </view>
+            <view class="b-r">
+              <!-- <view class="icon cuIcon-calendar" catchtap="openTimePicker"></view> -->
+              <!-- <view class="icon cuIcon-list" catchtap="addList"></view> -->
+              <!-- <view class="icon cuIcon-pic"></view> -->
+            </view>
+          </view>
+        </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

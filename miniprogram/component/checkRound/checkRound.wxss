@@ -1,0 +1,19 @@
+/* component/check/check.wxss */
+.checkBox{
+  width: 45rpx;
+  height: 45rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.checkBox .cuIcon-check{
+  color: #999;
+  font-weight: bold;
+  font-size: 35rpx;
+}
+.checkBox .round{
+  height: 30rpx;
+  width: 30rpx;
+  border-radius: 50%;
+  border: 4rpx solid #003D9F;
+}

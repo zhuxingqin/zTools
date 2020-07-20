@@ -1,0 +1,4 @@
+<view class="checkBox">
+  <view class="round" wx:if="{{!check}}"></view>
+  <view class="cuIcon-check" wx:else></view>
+</view>

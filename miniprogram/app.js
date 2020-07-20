@@ -91,7 +91,7 @@ App({
       data: {},
       success: res => {
         console.log('[云函数] [login] user openid: ', res)
-        this.globalData.openid = res.OPENID;
+        this.globalData.openid = res.result.OPENID;
         // if (this.loginCallback) {
         //   this.loginCallback(this.globalData.userInfo)
         // }

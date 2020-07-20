@@ -1,0 +1,27 @@
+<!--pages/home/workArea/workArea.wxml-->
+<cu-custom isBack="{{true}}">
+  <view slot="backText">返回</view>
+  <!-- <view slot="content">微动画</view> -->
+</cu-custom>
+<view class="workAreaPage">
+  <view class="header">
+    <view class="left">
+      <image class="icon" src="/images/icon-box.png"></image>   
+      <view class="wname" hover-class="hover" bindlongtap="updateWname" wx:if="{{!updating}}">{{wname}}</view>
+      <input class="wname" wx:else bindinput="wnameInp" value="{{wnameInp}}" focus="focus" bindblur="confrimUpdate" placeholder="区域名称"></input>
+    </view>
+    <view wx:if="{{wname!='日常'}}" class="delBtn {{confirm?'confirm':''}}" catchtap="delArea">
+      <view class="icon cuIcon-{{confirm?'pullleft':'delete'}}" catchtap="delAreaBefor"></view>
+      <view class="content">确认删除</view>
+    </view>
+  </view>
+  <view class="todo">
+    <todo-box wx:for="{{todoList}}" wx:key 
+    item="{{item}}" 
+    bind:showDetail="showDetail" bind:unShowDetail="unShowDetail" bind:changeCheckOut="changeCheckOut" 
+    bind:importantChange="importantChange"
+    index="{{index}}" 
+    toggleDelay="{{toggleDelay}}"/>
+  </view>
+</view>
+<add-btn bind:addPart="addPart" showAddBtn="{{showAddBtn}}" isHome="{{false}}"/>

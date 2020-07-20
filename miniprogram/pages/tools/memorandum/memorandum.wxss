@@ -1,0 +1,12 @@
+/* miniprogram/pages/tools/memorandum/memorandum.wxss */
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  
+}
+.container text{
+  font-size: 50rpx;
+  color: #666;
+}

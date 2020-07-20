@@ -1,0 +1,33 @@
+/* component/timeBox.wxss */
+.timeInfo{
+  border-top: 1rpx solid #efefef;
+  padding: 40rpx 0;
+  transition: all .4s;
+  min-width: calc( 100% - 20rpx );
+}
+.timeInfo .title{
+  margin-bottom: 25rpx;
+  line-height: 56rpx;
+}
+
+.timeInfo .title .name{
+  font-size: 40rpx;
+}
+.timeInfo .title .icon{
+  font-size: 50rpx;
+  margin-right: 10rpx;
+}
+.timeInfo .nothing {
+  color: #999;
+  height: 150rpx;
+}
+.timeInfo .nothing .icon{
+  font-size: 35rpx;
+  margin-right: 10rpx;
+}
+.more{
+  color: #999;
+  text-align: center;
+  font-size: 25rpx;
+  margin-top: 20rpx;
+}

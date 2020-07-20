@@ -1,0 +1,149 @@
+@import '../vant/common/index.wxss';.van-popup{position:fixed;top:50%;left:50%;max-height:100%;overflow-y:auto;background-color:#fff;box-sizing:border-box;-webkit-animation:ease both;animation:ease both;-webkit-overflow-scrolling:touch;transition-timing-function:ease}.van-popup--center{-webkit-transform:translate3d(-50%,-50%,0);transform:translate3d(-50%,-50%,0)}.van-popup--top{top:0;right:auto;bottom:auto;left:50%;width:100%;-webkit-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0)}.van-popup--right{top:50%;right:0;bottom:auto;left:auto;-webkit-transform:translate3d(0,-50%,0);transform:translate3d(0,-50%,0)}.van-popup--bottom{top:auto;right:auto;bottom:0;left:50%;width:100%;-webkit-transform:translate3d(-50%,0,0);transform:translate3d(-50%,0,0)}.van-popup--left{top:50%;right:auto;bottom:auto;left:0;-webkit-transform:translate3d(0,-50%,0);transform:translate3d(0,-50%,0)}.van-popup--bottom.van-popup--safe{padding-bottom:34px}.van-popup--left .van-popup__safe-top,.van-popup--right .van-popup__safe-top,.van-popup--top .van-popup__safe-top{height:44px}.van-popup--bottom .van-popup__safe-top,.van-popup--center .van-popup__safe-top{padding-top:0!important}.van-scale-enter-active,.van-scale-leave-active{transition-property:opacity,-webkit-transform;transition-property:opacity,transform;transition-property:opacity,transform,-webkit-transform}.van-scale-enter,.van-scale-leave-to{opacity:0;-webkit-transform:translate3d(-50%,-50%,0) scale(.7);transform:translate3d(-50%,-50%,0) scale(.7)}.van-fade-enter-active,.van-fade-leave-active{transition-property:opacity}.van-fade-enter,.van-fade-leave-to{opacity:0}.van-center-enter-active,.van-center-leave-active{transition-property:opacity}.van-center-enter,.van-center-leave-to{opacity:0}.van-bottom-enter-active,.van-bottom-leave-active,.van-left-enter-active,.van-left-leave-active,.van-right-enter-active,.van-right-leave-active,.van-top-enter-active,.van-top-leave-active{transition-property:-webkit-transform;transition-property:transform;transition-property:transform,-webkit-transform}.van-bottom-enter,.van-bottom-leave-to{-webkit-transform:translate3d(-50%,100%,0);transform:translate3d(-50%,100%,0)}.van-top-enter,.van-top-leave-to{-webkit-transform:translate3d(-50%,-100%,0);transform:translate3d(-50%,-100%,0)}.van-left-enter,.van-left-leave-to{-webkit-transform:translate3d(-100%,-50%,0);transform:translate3d(-100%,-50%,0)}.van-right-enter,.van-right-leave-to{-webkit-transform:translate3d(100%,-50%,0);transform:translate3d(100%,-50%,0)}
+/* 添加待办窗口 */
+.addTodo>.box{
+  width: 95vw;
+  border-radius: 20rpx;
+  position: relative;
+  padding: 50rpx 20rpx 140rpx 20rpx;
+}
+.addTodo .content{
+  transition: all .4s;
+  display: flex;
+  align-items: flex-start;
+  vertical-align: text-top;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 420rpx;
+}
+.addTodo .content .left{
+  padding-top: 50rpx;
+  vertical-align: text-top;
+  width: 40rpx;
+  height: 100%;
+  display: inline-block;
+}
+.addTodo .content .right{
+  vertical-align: text-top;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+  max-height: 800rpx;
+}
+.addTodo .content .right .placeholder{
+  color: #cdcdcd;
+}
+.addTodo .content .right .topBlock{
+  min-height: calc( 100% - 80rpx );
+  width: 100%;
+}
+.addTodo .content .right .topBlock .title{
+  font-size: 32rpx;
+}
+.addTodo .content .right .topBlock .note{
+  margin: 20rpx 0;
+}
+.addTodo .content .right .topBlock .list{
+  margin-bottom: 20rpx;
+  max-height: 400rpx;
+}
+.addTodo .content .right .topBlock .list .item.focus{
+  background-color: #F6F6F5;
+  border-radius: 15rpx;
+}
+.addTodo .content .right .topBlock .list .item.check textarea{
+  color: #666;
+}
+.addTodo .content .right .topBlock .list .item{
+  transition: all .4s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  padding: 20rpx 15rpx;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.addTodo .content .right .topBlock .list .item>.itemLeft{
+  width: 45rpx;
+  margin-right: 10rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.addTodo .content .right .topBlock .list .item>.itemRight{
+  width: calc( 100% - 100rpx );
+}
+.addTodo .content .right .topBlock .list .item>.itemClose{
+  width: 45rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 40rpx;
+}
+.addTodo .content .right .topBlock .list .item>.itemRight>textarea{
+  padding: 0;
+  width: 100%;
+  font-size: 28rpx;
+}
+.addTodo .content .bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80rpx;
+  width: 100%;
+  position: absolute;
+  bottom: -60rpx;
+  left: 0;
+}
+.addTodo .content .bar>.b-l{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.addTodo .content .bar>.b-l>.icon{
+  margin-right: 10rpx;
+  font-size: 37rpx;
+}
+.addTodo .content .bar>.b-l>.noticeText,.addTodo .content .bar>.b-l>.cuIcon-noticefill{
+  color: #cdcdcd;
+}
+.addTodo .content .bar>.b-r{
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 45rpx;
+}
+.addTodo .content .bar>.b-r>.icon:not(:first-child){
+  margin-left: 20rpx;
+}
+.addTodo .bottomBar{
+  width: 100%;
+  height: 80rpx;
+  background-color: #F4F5F6;
+  border-top: 1px solid #E1E3E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+}
+.addTodo .bottomBar .partClass{
+  color: #5B9CF7;
+  font-size: 32rpx;
+  margin-left: 20rpx;
+}
+.addTodo .bottomBar .btn{
+  background-color: #5B9CF7;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+}
+.overlay{
+  /* background-color: rgba(0, 0, 0, .1) !important; */
+  background-color: red;
+}

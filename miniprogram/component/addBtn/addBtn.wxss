@@ -1,0 +1,72 @@
+/* component/addBtn/addBtn.wxss */
+.bgModal{
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.1);
+  z-index: 20;
+}
+.addBtn{
+  z-index: 21;
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 50%;
+  background-color: #5D9CF6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 60rpx;
+  position: fixed;
+  right: 30rpx;
+  bottom: -140rpx;
+  transition: 0.4s all;
+  overflow: hidden;
+  box-shadow: 5rpx 10rpx 10rpx 3rpx rgba(0, 0, 0, .13);
+}
+.addBtn.show{
+  bottom: 30rpx;
+}
+.addBtn.on{
+  border-radius: 30rpx;
+  width: calc( 100vw - 60rpx );
+  height: 270rpx;
+  background-color: #262D35;
+}
+.addBtn .ul{
+  width: 100%;
+  padding: 30rpx;
+}
+.addBtn .ul .li{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  border-radius: 20rpx;
+  transition: .4 all;
+  background-color:rgba(255, 255, 255, 0);
+}
+.addBtn .ul .li:not(:first-child) {
+  margin-top: 30rpx;
+}
+.addBtn .ul .li.hover{
+  background-color:rgba(255, 255, 255, .3);
+}
+.addBtn .ul .li .icon{
+  margin-right: 30rpx;
+  width: 50rpx;
+  height: 50rpx;
+}
+.addBtn .ul .li .title{
+  font-size: 35rpx;
+}
+.addBtn .ul .li .tips{
+  font-size: 30rpx;
+  color: #999;
+}
+/* 添加待办窗口 */
+.addTodo>view{
+  width: 95vw;
+  border-radius: 20rpx;
+}

@@ -1,0 +1,4 @@
+<!--component/check/check.wxml-->
+<view class="checkBox {{check?'on':''}}">
+  <view class="cuIcon-check check"></view>
+</view>

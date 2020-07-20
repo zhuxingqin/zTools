@@ -1,0 +1,36 @@
+<!--miniprogram/pages/tools/calculator/calculator.wxml-->
+<cu-custom isBack="{{true}}" />
+<view class="outbox" catchtouchmove="catchtouchmove">
+  <view class="calculator" style="height:calc( 100vh - {{CustomBar}}px )">
+    <scroll-view scroll-x class="result" style="grid-area: result">
+      {{ equation }}
+    </scroll-view>
+    <!-- <textarea class="result" style="grid-area: result">
+      {{ equation }}
+    </textarea> -->
+    <view class="btn">
+      <button style="grid-area: ac" catchtap="clear">AC</button>
+      <button style="grid-area: plus-minus" catchtap="calculateToggle">±</button>
+      <button style="grid-area: percent" catchtap="calculatePercentage" >%</button>
+      <button style="grid-area: add" catchtap="append" data-data="+">+</button>
+      <button style="grid-area: subtract" catchtap="append" data-data="-">-</button>
+      <button style="grid-area: multiply" catchtap="append" data-data="×">×</button>
+      <button style="grid-area: divide" catchtap="append" data-data="÷">÷</button>
+      <button style="grid-area: equal" catchtap="calculate">=</button>
+      <button style="grid-area: number-1" catchtap="append" data-data="1">1</button>
+      <button style="grid-area: number-2" catchtap="append" data-data="2">2</button>
+      <button style="grid-area: number-3" catchtap="append" data-data="3">3</button>
+      <button style="grid-area: number-4" catchtap="append" data-data="4">4</button>
+      <button style="grid-area: number-5" catchtap="append" data-data="5">5</button>
+      <button style="grid-area: number-6" catchtap="append" data-data="6">6</button>
+      <button style="grid-area: number-7" catchtap="append" data-data="7">7</button>
+      <button style="grid-area: number-8" catchtap="append" data-data="8">8</button>
+      <button style="grid-area: number-9" catchtap="append" data-data="9">9</button>
+      <button style="grid-area: number-0" catchtap="append" data-data="0">0</button>
+      <button style="grid-area: dot" catchtap="append" data-data=".">.</button>
+      <view class="from" style="grid-area: from">
+        <view class="text">code from 'CodingStartup'</view>
+      </view>
+    </view>
+  </view>
+</view>

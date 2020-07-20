@@ -1,0 +1,52 @@
+<!--component/timePicker/timePicker.wxml-->
+<popup show="{{show}}" round bind:close="close" safe-area-inset-top class="timePicker" overlay-style="background-color: rgba(0, 0, 0, .2);top:0;" custom-style="top:{{CustomBar}}px;transform:translate3d(-50%,0%,0);">
+  <view class="title">时间</view>
+  <view class="cuIcon-close" catchtap="close"></view>
+  <view class="content">
+    <view class="time-item" bindtap="chooseTody">
+      <view class="left">
+        <text class="cuIcon-favorfill icon" style="color:#FFDA14;"></text>
+        <view class="name">今天</view>
+      </view>
+      <view class="cuIcon-check" hidden="{{timeObj.dateText!='今天'}}"></view>
+    </view>
+    <picker mode="date" start="{{tomorrow}}" bindchange="dateChange" value="{{timeObj.dateText}}">
+      <view class="time-item">
+      <view class="left">
+        <text class="cuIcon-activityfill icon" style="color:#FA346E;"></text>
+        <view class="name">{{timeObj.dateText && timeObj.dateText !='今天' ?timeObj.dateText:"计划"}}</view>
+      </view>
+      <view class="cuIcon-check" hidden="{{timeObj.dateText=='今天' || !timeObj.dateText}}"></view>
+      </view>
+    </picker>
+    <!-- <picker mode="time" wx:if="{{!noticeTime}}" bindchange="timeChange" value="{{timeObj.noticeText}}">
+      <view class="notice flex start" >
+        <view class="cuIcon-notice"></view>
+        <view></view>
+      </view>
+    </picker> -->
+    <picker mode="time" bindchange="timeChange" value="{{timeObj.noticeText}}">
+      <view class="notice {{timeObj.noticeText?'on':''}} flex sb">
+        <view class="left flex start">
+          <view class="cuIcon-notice{{timeObj.noticeText?'fill':''}}"></view>
+          <view>{{timeObj.noticeText?"提醒时间":"选择提醒时间"}}</view>
+        </view>
+        <view class="right flex start" wx:if="{{timeObj.noticeText}}">
+          <view class="time">{{timeObj.noticeText}}</view>
+          <view class="cuIcon-close"  catchtap="cleanNotice"></view>
+        </view>
+      </view>
+    </picker>
+    <view class="btnBox flex sb">
+      <view class="btn clear" bindtap="clearAll">清除</view>
+      <form bindsubmit="done" report-submit='true' class="btn done">
+        <button form-type="submit" class="none" style="color:#fff;">完成</button>
+      </form>
+      <!-- <view class="btn" bindtap="done">完成</view> -->
+    </view>
+  </view>
+  <!-- <view class="date">
+    <view class="left">日期</view>
+    <picker></picker>
+  </view> -->
+</popup>

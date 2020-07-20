@@ -10,10 +10,12 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"scopeDataCheck": false,
 		"uglifyFileName": true,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
+		"compileHotReLoad": false,
 		"babelSetting": {
 			"ignore": [],
 			"disablePlugins": [],
@@ -22,8 +24,8 @@
 		"useIsolateContext": true,
 		"useCompilerModule": false,
 		"userConfirmedUseCompilerModuleSwitch": false,
-		"compileHotReLoad": false,
-		"scopeDataCheck": false
+		"packNpmManually": false,
+		"packNpmRelationList": []
 	},
 	"appid": "wx44981d36a7803fb6",
 	"projectname": "极简待办zTodo",
@@ -93,6 +95,13 @@
 					"name": "pages/tools/calculator/calculator",
 					"pathName": "pages/tools/calculator/calculator",
 					"query": "wid=b05d218a5ecf7d9d004638e0463f1035&wname=项目",
+					"scene": null
+				},
+				{
+					"id": 6,
+					"name": "pages/home/home/home",
+					"pathName": "pages/home/home/home",
+					"query": "todoId=a7d38b365f080e6b0009ec8b243f1f7f&nickName=不老妖童&avatarUrl=https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83epibpDy1rVxeMRrXtqiagfKRGD83DwmoySjBqkJ86I5EuPWg3UxxZxe88fMgPC7QDJeqRxVbLMdZCOg/132&openid=oaTi_4vnTnuvmseSkQQ4DL4WBh4o",
 					"scene": null
 				}
 			]

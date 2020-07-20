@@ -1,0 +1,27 @@
+/* component/check/check.wxss */
+.checkBox{
+  border-radius: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 25rpx;
+  transition: .4s all;
+  border: 2px solid ;
+  border-color: #C3C5C9;
+  background-color: #fff;
+}
+.checkBox>.check{
+  opacity: 0;
+  transform: .4s all;
+}
+.checkBox.on{
+  background-color: #1564C1;
+  border-color: #1564C1;
+  font-weight: bold;
+}
+.checkBox.on>.check{
+  opacity: 1;
+}

@@ -1,0 +1,73 @@
+<!--component/todoBox/todoBox.wxml-->
+<view class="todoOutBox" catchtap="showDetail">
+  <view class="bg {{item.show?'show':''}}" wx:if="{{item.show}}" catchtap="unShowDetail"></view>
+  <view class="todoBox {{item.show?'show':''}} {{item.important?'important':''}}" hover-class="{{!item.show?'hover':''}}" style="{{style}}" bind:longpress="important" bind:touchstart="touchstart" bind:touchend="touchend">
+    <!-- <view wx:if="{{!item.show}}" class="unShowBox {{toggleDelay?'animation-slide-right':''}} {{item.state?'check':''}}" bindtap="showDetail" style="animation-delay: {{(index+1)*0.1}}s;" bindtouchend="ListTouchEnd" bindtouchmove="ListTouchMove" bindtouchstart="ListTouchStart" hover-class="hover"> -->
+    <view wx:if="{{!item.show}}" class="unShowBox {{toggleDelay?'animation-slide-right':''}} {{item.state?'check':''}}"  style="animation-delay: {{(index+1)*0.1}}s;" >
+      <view class="left">
+        <check check="{{item.state}}" catchtap="changeCheckOut"/>
+      </view>
+      <view class="right">
+        <view class="title e1">{{item.title}}</view>
+        <view class="cuIcon-list" wx:if="{{item.list.length>0}}"></view>
+        <view class="time" style="{{item.dateText=='逾期'?'color:#e54d42':''}}">{{item.dateText}}</view>
+      </view>
+    </view>
+    <view wx:else class="showBox">
+      <view class="partClass" bindtap="openPartList">{{item.partText}}</view>    
+      <view class="content" id="content">
+        <view class="left">
+          <check check="{{item.state}}" catchtap="changeCheck"/>
+        </view> 
+        <view class="right" >
+          <view class="topBlock">
+            <view class="title" hidden="{{!showPartList || !showTimePicker}}"></view>
+            <view class="note" hidden="{{!showPartList || !showTimePicker}}"></view>
+            <textarea class="title" maxlength="-1" hidden="{{showPartList || showTimePicker }}" placeholder="新建待办事项" placeholder-class="placeholder" auto-height bindinput="titleInp" value="{{item.title}}"></textarea>
+            <textarea class="note" maxlength="-1" hidden="{{showPartList || showTimePicker}}" placeholder="备注" placeholder-class="placeholder" auto-height bindinput="noteInp" value="{{item.note}}"></textarea>
+            <!-- 子列表 -->
+            <scroll-view class="list" scroll-y>
+              <view wx:for="{{item.list}}" wx:key="index" class="item {{index==focusList?'focus':''}} {{item.state?'check':''}} {{index==focusList?animation:''}}" style="{{index==0 && index!=focusList ? 'border-top-color:#EDEDEF;':''}} {{index==focusList-1 || index==focusList ?'':'border-bottom-color:#EDEDEF;'}}">
+                <view class="itemLeft">
+                  <check-round check="{{item.state}}" catchtap="changeListCheck" data-index="{{index}}"/>
+                </view>
+                <view class="itemRight">
+                  <textarea maxlength="-1" hidden="{{showPartList || showTimePicker}}" auto-height value="{{item.content}}" placeholder="子任务" placeholder-class="placeholder" focus="{{index==focusList}}" bindfocus="changeFocus" bindblur="blurFocus" bindinput="itemInp" data-index="{{index}}" style="{{item.state?'color:#999;':''}}" ></textarea>
+                </view>
+                <view class="itemClose">
+                  <view class="cuIcon-roundclose" catchtap="delItem" data-index="{{index}}"></view>
+                </view>
+              </view>
+            </scroll-view>
+          </view>
+        </view>
+      </view>
+      <!-- 功能按钮 -->
+      <view class="bar">
+        <view class="b-l" wx:if="{{timeObj.time}}" catchtap="openTimePicker">
+          <text class="cuIcon-favorfill icon" style="color:#FFDA14;" wx:if="{{timeObj.dateText=='今天'}}"></text>
+          <text class="cuIcon-activityfill icon" style="color:#FA346E;" wx:else></text>
+          <text style="margin-right:20rpx;">{{timeObj.dateText}}</text>
+          <text class="cuIcon-noticefill icon" wx:if="{{timeObj.noticeText}}"></text>
+          <text wx:if="{{timeObj.noticeText}}" class="noticeText">{{timeObj.noticeText}}</text>
+        </view>
+        <view wx:else></view>
+        <view class="b-r">
+          
+          <view class="icon cuIcon-calendar" catchtap="openTimePicker"></view>
+          <view class="icon cuIcon-list" catchtap="addList"></view>
+          <view class="icon cuIcon-colorlens" style="{{item.important?'color:#cce6ff;':''}}" catchtap="important" data-type="show"></view>
+          <view class="icon cuIcon-group">
+            <button class="none" open-type="share" data-todo="{{item}}"></button>
+          </view>
+        </view>
+      </view>
+      <view class="delBtn {{confirm?'confirm':''}}" catchtap="del">
+        <view class="icon cuIcon-{{confirm?'pullleft':'delete'}}" catchtap="delbefor"></view>
+        <view>确认删除</view>
+      </view>
+    </view>
+  </view>
+</view>
+<selected-part show="{{showPartList}}" bind:close="closePartList" bind:choose="selectedPart" wid="{{item.wid}}"/>
+<time-picker show="{{showTimePicker}}" bind:close="closeTimePicker" bind:choose="selectedTime" timeObj="{{timeObj}}"/>

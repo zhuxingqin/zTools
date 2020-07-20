@@ -1,0 +1,55 @@
+page{
+  background-color: #fff;
+}
+.header{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 50rpx 30rpx;
+  overflow-x:hidden;
+  position: relative;
+}
+.header>.left{
+  display: flex;
+  align-items: center;
+}
+.header>.left>.icon{
+  width: 50rpx;
+  height: 50rpx;
+}
+.header>.left>.wname{
+  transition: all .4s;
+  font-size: 55rpx;
+  border-radius: 10rpx;
+  padding: 0 15rpx;
+  background-color: #fff;
+}
+.header .delBtn{
+  position: absolute;
+  right: -150rpx;
+  border-radius: 20rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: all .3s;
+  width: 220rpx;
+  padding-right: 20rpx;
+}
+.header .delBtn.confirm{
+  color: #fff;
+  background-color: #F4311F;
+  right: 20rpx;
+}
+.header .delBtn .icon{
+  font-size: 40rpx;
+  text-align: center;
+  height: 72rpx;
+  width: 72rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.todo{
+  padding: 0 20rpx 50rpx 20rpx;
+}

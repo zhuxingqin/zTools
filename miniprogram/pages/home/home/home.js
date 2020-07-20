@@ -59,6 +59,7 @@ Page({
     isIphoneX:true,
     scrollTop:0,
     showAddWorkArea:false,
+    cart:false
   },
   notechange(e){
     let item = e.detail.item;
@@ -256,69 +257,110 @@ Page({
    */
   getToday(callback){
     if (!callback) { callback = () => {}}
-    const todo = db.collection('todo');
     let todyStamp = this.getTime(0).timeStamp;
     let tomorrow = this.getTime(1).timeStamp;
     let self=this;
     let todyCount = this.data.timeInfo[0].todoList.length;
-    todo.where({
-      _openid: app.globalData.openid,
+    let data= {
       state: false,
-      time: _.and(_.gte(todyStamp), _.lt(tomorrow))
-    }).count().then(res=>{
-      let total = res.total;
-      todo.where({
-        _openid: app.globalData.openid,
-        state: false,
-        time: _.and(_.gte(todyStamp), _.lt(tomorrow))
-      }).skip(todyCount).limit(10).orderBy('createTime', 'desc').get({
-        success(res) {
-          callback()
-          let todoList = res.data;
-          todoList.map(item => {
-            item.dateText = self.getDateText(item.time,item.notice);
-            let workAreaList = self.data.workAreaList;
-            workAreaList.map(part=>{
-              if(part._id == item.wid){
-                item.partText = part.name
-              }
-            })
-          })
-          let item = self.data.timeInfo[0];
-          item.todoList = todyCount ? item.todoList.concat(todoList) : todoList;
-          item.more = item.todoList.length >= total ? false : true;
-          app.timeInfo[0] = item,
-          self.setData({
-            ['timeInfo[' + 0 + ']']: item,
-            todyCount: todyCount += 10,
-          }, () => {
-            setTimeout(() => {
-              app.timeInfo[0].toggleDelay=false;
-              self.setData({
-                ['timeInfo[' + 0 + '].toggleDelay']: false
-              })
-            }, 1000 + item.todoList.length*100)
-          })
-        },
-        fail(err) {
-          wx.showToast({
-            title: '哎呀，网络断了～',
-            icon:'none'
-          })
-          console.error(err)
-        }
+      openid:app.globalData.openid,
+      skip:todyCount,
+      limit:10,
+      time:[todyStamp,tomorrow],
+      orderBy:{
+        name:'createTime',
+        type:'desc'
+      }
+    };
+    let type = 'today';
+    this.getTodo({
+      data,
+      type
+    }).then(res => {
+      console.log('today',res)
+      let total = res.result.total;
+      let todoList = res.result.todoList;
+      todoList.map(item => {
+        item.dateText = self.getDateText(item.time,item.notice);
+        let workAreaList = self.data.workAreaList;
+        workAreaList.map(part=>{
+          if(part._id == item.wid){
+            item.partText = part.name
+          }
+        })
       })
-    })
+      let item = self.data.timeInfo[0];
+      item.todoList = todyCount ? item.todoList.concat(todoList) : todoList;
+      item.more = item.todoList.length >= total ? false : true;
+      app.timeInfo[0] = item;
+      self.setData({
+        ['timeInfo[' + 0 + ']']: item,
+        todyCount: todyCount += 10,
+      }, () => {
+        setTimeout(() => {
+          app.timeInfo[0].toggleDelay=false;
+          self.setData({
+            ['timeInfo[' + 0 + '].toggleDelay']: false
+          })
+        }, 1000 + item.todoList.length*100)
+      })
+    }).catch(console.error)
   },
   /**ƒ
    * 获取计划任务列表
    */
   getSomeDay(callback){
     if (!callback) { callback = () => { } }
-    const todo = db.collection('todo');
     let tomorrow = this.getTime(1).timeStamp;
     let somedayCount = this.data.timeInfo[2].todoList.length;
     let self = this;
+    let data= {
+      state: false,
+      openid:app.globalData.openid,
+      skip:somedayCount,
+      limit:10,
+      time:tomorrow,
+      orderBy:{
+        name:'createTime',
+        type:'desc'
+      }
+    };
+    let type = 'someDay';
+    this.getTodo({
+      data,
+      type
+    }).then(res => {
+      callback()
+      console.log('someday',res)
+      let total = res.result.total;
+      let todoList = res.result.todoList;
+      todoList.map(item => {
+        item.dateText = self.getDateText(item.time, item.notice);
+        let workAreaList = self.data.workAreaList;
+        workAreaList.map(part => {
+          if (part._id == item.wid) {
+            item.partText = part.name
+          }
+        })
+      })
+      let item = self.data.timeInfo[2];
+      item.todoList = somedayCount ? item.todoList.concat(todoList) : todoList;
+      item.more = item.todoList.length >= total ? false : true;
+      app.timeInfo[2] = item;
+      self.setData({
+        ['timeInfo[' + 2 + ']']: item,
+        somedayCount: somedayCount += 10,
+      }, () => {
+        setTimeout(() => {
+          app.timeInfo[2].toggleDelay=false;
+          self.setData({
+            ['timeInfo[' + 2 + '].toggleDelay']: false
+          })
+        }, 1000 +item.todoList.length * 100)
+      })
+    })
+    .catch(console.error)
+    return
     todo.where({
       _openid: app.globalData.openid,
       state: false,
@@ -373,56 +415,72 @@ Page({
    */
   getAnyTime(callback) {
     if (!callback) { callback = () => { }}
-    const todo = db.collection('todo');
     let todyStamp = this.getTime(0).timeStamp;
+    console.log(todyStamp)
     let anytimeCount = this.data.timeInfo[1].todoList.length;
     let self = this;
-    todo.where({
-      _openid: app.globalData.openid,
+    let data= {
       state: false,
-      time: _.lt(todyStamp)
-    }).count().then(res => {
-      let total = res.total;
-      todo.where({
-        _openid: app.globalData.openid,
-        state: false,
-        time: _.lt(todyStamp)
-      }).skip(anytimeCount).limit(10).orderBy('createTime', 'desc').get({
-        success(res) {
-          callback()
-          let todoList = res.data;
-          todoList.map(item => {
-            item.dateText = self.getDateText(item.time, item.notice);
-            let workAreaList = self.data.workAreaList;
-            workAreaList.map(part => {
-              if (part._id == item.wid) {
-                item.partText = part.name
-              }
-            })
-          })
-          let item = self.data.timeInfo[1];
-          item.todoList = anytimeCount ? item.todoList.concat(todoList) : todoList;
-          item.more = item.todoList.length >= total ? false : true;
-          app.timeInfo[1] = item;
+      openid:app.globalData.openid,
+      skip:anytimeCount,
+      limit:10,
+      time:todyStamp,
+      orderBy:{
+        name:'createTime',
+        type:'desc'
+      }
+    };
+    let type = 'anyTime';
+    this.getTodo({
+      data,
+      type
+    }).then(res => {
+      callback()
+      let total = res.result.total;
+      let todoList = res.result.todoList;
+      todoList.map(item => {
+        item.dateText = self.getDateText(item.time, item.notice);
+        let workAreaList = self.data.workAreaList;
+        workAreaList.map(part => {
+          if (part._id == item.wid) {
+            item.partText = part.name
+          }
+        })
+      })
+      let item = self.data.timeInfo[1];
+      item.todoList = anytimeCount ? item.todoList.concat(todoList) : todoList;
+      item.more = item.todoList.length >= total ? false : true;
+      app.timeInfo[1] = item;
+      self.setData({
+        ['timeInfo[' + 1 + ']']: item,
+        anytimeCount: anytimeCount += 10,
+      },()=>{
+        setTimeout(() => {
+          app.timeInfo[1].toggleDelay = false;
           self.setData({
-            ['timeInfo[' + 1 + ']']: item,
-            anytimeCount: anytimeCount += 10,
-          },()=>{
-            setTimeout(() => {
-              app.timeInfo[1].toggleDelay = false;
-              self.setData({
-                ['timeInfo[' + 1 + '].toggleDelay']: false
-              })
-            }, 1000 + item.todoList.length * 100)
+            ['timeInfo[' + 1 + '].toggleDelay']: false
           })
+        }, 1000 + item.todoList.length * 100)
+      })
+    })
+    .catch(console.error)
+  },
+  /**
+   * 调用云函数
+   */
+  getTodo({data,type}){
+    return new Promise((resolve, reject)=>{
+      wx.cloud.callFunction({
+        name: 'getTodo',
+        data: {
+          data,
+          type
         },
-        fail(err) {
-          wx.showToast({
-            title: '哎呀，网络断了～',
-            icon:'none'
-          })
-          console.error(err)
-        }
+      }).then(res=>{
+        resolve(res)
+      }).catch(err=>{
+        console.log(err)
+        reject(err)
       })
     })
   },
@@ -783,6 +841,42 @@ Page({
       return m + '月' + d + '日';
     }
   },
+  accept(){
+    this.getTodo({
+      data:{
+        id:this.data.shareData.todoId,
+        openid:app.globalData.openid
+      },
+      type:'jionShare'
+    })
+    .then(res=>{
+      wx.showToast({
+        title: '已加入协作',
+        icon:'none'
+      })
+      this.setData({
+        cart:false,
+      })
+      console.log(res)
+    })
+    .catch(console.error)
+    return
+    const todo = db.collection('todo');
+    todo.doc(this.data.shareData.todoId).update({
+      data:{
+        partners:_.push([app.globalData.openid])
+      }
+    })
+    .then(res=>{
+      console.log(res)
+    })
+    .catch(console.error)
+  },
+  rufuse(){
+    this.setData({
+      cart:false,
+    })
+  },
   getTime(num) {
     var check = time => {
       if (time < 10) {
@@ -847,47 +941,72 @@ Page({
     })
   },
   /**
+   * 处理分享
+   */
+  checkShare(options){
+    if(!options.todoId || options.openid == app.globalData.openid){
+      console.log(options)
+      return
+    }
+    this.getTodo({
+      data:{
+        id:options.todoId,
+        openid:app.globalData.openid
+      },
+      type:'share'
+    }).then(res=>{
+      console.log(res)
+      if(res.result.state && res.result.state.code == '-1'){
+        return
+      }
+      let shareTodo = res.result.todoList[0];
+      shareTodo.show=true;
+      this.setData({
+        cart:true,
+        shareData:options,
+        shareTodo
+      })
+    }).catch(console.error)
+  },
+  init(){
+    this.setData({laoding:true})
+    let finish=0;
+    let stopLoad = ()=>{
+      finish+=1;
+      if(finish==3)app.loading(false)
+    }
+    this.getWorkArea(()=>{
+      this.getTodo(()=>{
+        stopLoad()
+        this.drag.init()
+      })
+    })
+    this.getToday(()=>{
+      stopLoad()
+    })
+    this.getAnyTime(()=>{
+      stopLoad()
+    })
+    this.getSomeDay(()=>{
+      stopLoad()
+    })
+  },
+  /**
    * 生命周期函数--监听页面加载
    */
-  onLoad(){
+  onLoad(options){
+    console.log('onShareAppMessage',options)
     let self=this;
     self.drag = this.selectComponent('#drag');
     app.loading = loading =>{
-      this.setData({loading})
+      this.setData({loading}) 
     }
     app.loginCallback = userInfo => {
-      console.log('成功获取用户信息', userInfo)
+      this.checkShare(options)
       this.setData({
         userInfo
       },()=>{
-        this.setData({laoding:true})
-        this.getWorkArea(()=>{
-          this.getTodo(()=>{
-            this.drag.init()
-          })
-        })
-        let finish=0;
-        this.getToday(()=>{
-          finish+=1;
-          if(finish== 3){
-            app.loading(false)
-            console.log('数据加载结束')
-          }
-        })
-        this.getAnyTime(()=>{
-          finish+=1;
-          if(finish== 3){
-            app.loading(false)
-            console.log('数据加载结束')
-          }
-        })
-        this.getSomeDay(()=>{
-          finish+=1;
-          if(finish== 3){
-            app.loading(false)
-            console.log('数据加载结束')
-          }
-        })
+        this.init()
       })
     }
     app.initHomeData=(callback)=>{
@@ -976,7 +1095,22 @@ Page({
   /**
    * 分享
    */
-  onShareAppMessage () {
-    // return custom share data when user share.
-  },
+  onShareAppMessage(e) {
+    console.log(e)
+    if(e.from == 'button'){
+      let todo = e.target && e.target.dataset && e.target.dataset.todo || {};
+      return {
+        title: '邀请您协作:“'+todo.title+'”',
+        imageUrl: '/images/logo.jpg',
+        path: '/pages/home/home/home?todoId='+todo._id+'&nickName='+app.globalData.userInfo.nickName+'&avatarUrl='+app.globalData.userInfo.avatarUrl+'&openid='+app.globalData.openid,
+      }
+    }else{
+      return {
+        title: '待办小工具zTodo',
+        path: '/pages/home/home/home',
+        imageUrl: '/images/logo.jpg',
+      }
+    }
+    
+  }
 })

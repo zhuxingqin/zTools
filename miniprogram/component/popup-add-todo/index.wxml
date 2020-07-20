@@ -1,0 +1,71 @@
+<wxs src="../vant/wxs/utils.wxs" module="utils" />
+<van-overlay
+  wx:if="{{ overlay }}"
+  mask
+  show="{{ show }}"
+  z-index="{{ zIndex }}"
+  custom-style="{{ overlayStyle }}"
+  duration="{{ duration }}"
+  bind:click="onClickOverlay"
+/>
+<view
+  wx:if="{{ inited }}"
+  class="addTodo custom-class {{ classes }} {{ utils.bem('popup', [position, { safe: isIPhoneX && safeAreaInsetBottom }]) }}"
+  style="z-index: {{ zIndex }}; -webkit-transition-duration:{{ currentDuration }}ms; transition-duration:{{ currentDuration }}ms; {{ display ? '' : 'display: none;' }} {{ customStyle }}; top:{{CustomBar}}px;"
+  bind:transitionend="onTransitionEnd"
+>
+  <view wx:if="{{ safeAreaInsetTop }}" class="van-popup__safe-top" style="padding-top: {{ statusBarHeight }}px;"></view>
+  <view class="box" catch:touchmove="touchmove">
+    <view class="content">
+      <!-- <view class="left">
+        <check check="{{check}}" catchtap="changeCheck"/>
+      </view>  -->
+      <scroll-view class="right" scroll-y>
+        <view class="topBlock">
+          <view class="title" hidden="{{!showPartList || !showTimePicker}}"></view>
+          <view class="note" hidden="{{!showPartList || !showTimePicker}}"></view>
+          <textarea class="title" maxlength="-1" hidden="{{showPartList || showTimePicker }}" placeholder="新建待办事项" placeholder-class="placeholder" auto-height bindinput="titleInp" value="{{title}}"></textarea>
+          <textarea class="note" maxlength="-1" hidden="{{showPartList || showTimePicker}}" placeholder="备注" placeholder-class="placeholder" auto-height bindinput="noteInp" value="{{note}}"></textarea>
+          <!-- 子列表 -->
+          <scroll-view class="list" scroll-y>
+            <view wx:for="{{list}}" wx:key class="item {{index==focusList?'focus':''}} {{item.state?'check':''}}" style="{{index==0 && index!=focusList ?'border-top-color:#EDEDEF;':''}} {{index==focusList-1 || index==focusList ?'':'border-bottom-color:#EDEDEF;'}}">
+              <view class="itemLeft">
+                <check-round check="{{item.state}}" catchtap="changeListCheck" data-index="{{index}}"/>
+              </view>
+              <view class="itemRight">
+                <textarea maxlength="-1" hidden="{{showPartList || showTimePicker}}" auto-height value="{{item.content}}" placeholder="子任务" placeholder-class="placeholder" focus="{{index==focusList}}" bindfocus="changeFocus" bindblur="blurFocus" bindinput="itemInp" data-index="{{index}}" style="{{item.state?'color:#999;':''}}" ></textarea>
+              </view>
+              <view class="itemClose">
+                <view class="cuIcon-roundclose" catchtap="delItem" data-index="{{index}}"></view>
+              </view>
+            </view>
+          </scroll-view>
+        </view>
+        
+      </scroll-view>
+      <!-- 功能按钮 -->
+      <view class="bar">
+        <view class="b-l" wx:if="{{timeObj.time}}" catchtap="openTimePicker">
+          <text class="cuIcon-favorfill icon" style="color:#FFDA14;" wx:if="{{timeObj.dateText=='今天'}}"></text>
+          <text class="cuIcon-activityfill icon" style="color:#FA346E;" wx:else></text>
+          <text style="margin-right:20rpx;">{{timeObj.dateText}}</text>
+          <text class="cuIcon-noticefill icon" wx:if="{{timeObj.noticeText}}"></text>
+          <text wx:if="{{timeObj.noticeText}}" class="noticeText">{{timeObj.noticeText}}</text>
+        </view> 
+        <view wx:else></view>
+        <view class="b-r">
+          <view class="icon cuIcon-colorlens" style="{{important?'color:#cce6ff;':''}}" catchtap="important" data-type="show"></view>
+          <view class="icon cuIcon-calendar" catchtap="openTimePicker"></view>
+          <view class="icon cuIcon-list" catchtap="addList"></view>
+          <!-- <view class="icon cuIcon-pic"></view> -->
+        </view>
+      </view>
+    </view>
+    <view class="bottomBar">
+      <view class="partClass {{animation?'animation-shake':''}}" bindtap="openPartList">{{workAreaItem?workAreaItem.name:wname}}</view>
+      <view class="btn" catchtap="save">保存</view>
+    </view>
+  </view>
+</view>
+<selected-part show="{{showPartList}}" bind:close="closePartList" bind:choose="selectedPart" wid="{{wid}}"/>
+<time-picker show="{{showTimePicker}}" bind:close="closeTimePicker" bind:choose="selectedTime" timeObj="{{timeObj}}"/>

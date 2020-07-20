@@ -202,10 +202,10 @@ page {
 }
 .DrawerWindow .outbox{
   width: 100%;
-  margin-top: 60rpx;
+  margin-top: 380rpx;
 }
 .DrawerWindow .list{
-  margin-top: 30rpx;
+  margin-top: 20rpx;
   /* position: absolute; */
   /* bottom: 40rpx; */
   /* left: calc( 10% / 2); */
@@ -386,4 +386,166 @@ page {
   /* justify-content: center; */
   /* align-items: center; */
   padding: 20rpx 0;
+}
+.model{
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  background-color: slategray;
+}
+.model .box{
+  padding: 30rpx;
+  margin-top: 200rpx;
+}
+.model .box .userbox{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #fff;
+}
+.model .box .userbox .info{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+.model .box .userbox .info image{
+  margin-bottom: 10rpx;
+  width: 130rpx;
+  height: 130rpx;
+  border-radius: 50%;
+}
+.model .box .userbox .text{
+  position: relative;
+  margin-left: 20rpx;
+  border-radius: 20rpx;
+  color: #555;
+  line-height: 140rpx;
+  font-size: 50rpx;
+  text-align: center;
+  width: calc( 100% - 180rpx );
+  background-color: #92EB69;
+}
+.model .box .userbox .text .icon{
+  width: 0;
+  height: 0;
+  border: 20rpx solid;
+  border-color: transparent #92EB69 transparent transparent;
+  position: absolute;
+  left:-38rpx;
+  top: calc( 50% - 15rpx );
+}
+
+/* 添加待办窗口 */
+.model .todoBox{
+  background-color: #fff;
+  margin:0 auto;
+  width: 95vw;
+  border-radius: 20rpx;
+  position: relative;
+  padding: 50rpx 30rpx 30rpx 30rpx;
+}
+.model .todoBox .content{
+  transition: all .4s;
+  display: flex;
+  align-items: flex-start;
+  vertical-align: text-top;
+  justify-content: flex-start;
+  position: relative;
+  min-height: 420rpx;
+}
+.model .todoBox .content .left{
+  padding-top: 50rpx;
+  vertical-align: text-top;
+  width: 40rpx;
+  height: 100%;
+  display: inline-block;
+}
+.model .todoBox .content .right{
+  vertical-align: text-top;
+  display: inline-block;
+  height: 100%;
+  width: 100%;
+}
+.model .todoBox .content .right .placeholder{
+  color: #cdcdcd;
+}
+.model .todoBox .content .right .topBlock{
+  min-height: calc( 100% - 80rpx );
+  width: 100%;
+}
+.model .todoBox .content .right .topBlock .title{
+  font-size: 32rpx;
+}
+.model .todoBox .content .right .topBlock .note{
+  margin: 20rpx 0;
+}
+.model .todoBox .content .right .topBlock .list{
+  margin-bottom: 20rpx;
+}
+.model .todoBox .content .right .topBlock .list .item.focus{
+  background-color: #F6F6F5;
+  border-radius: 15rpx;
+}
+.model .todoBox .content .right .topBlock .list .item.check textarea{
+  color: #666;
+}
+.model .todoBox .content .right .topBlock .list .item{
+  transition: all .4s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  padding: 20rpx 15rpx;
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.model .todoBox .content .right .topBlock .list .item>.itemLeft{
+  width: 45rpx;
+  margin-right: 10rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.model .todoBox .content .right .topBlock .list .item>.itemRight{
+  width: calc( 100% - 100rpx );
+}
+.model .todoBox .content .right .topBlock .list .item>.itemClose{
+  width: 45rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 40rpx;
+}
+.model .todoBox .content .right .topBlock .list .item>.itemRight>textarea{
+  padding: 0;
+  width: 100%;
+  font-size: 28rpx;
+}
+.model .bottomBar{
+  position: absolute;
+  bottom: -150rpx;
+  left: 0;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.model .bottomBar .btn{
+  background-color: #5B9CF7;
+  text-align: center;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  width: 49%;
+  line-height: 100rpx;
+}
+.model .bottomBar .btn:first-child{
+  background-color: red;
+}
+.overlay{
+  /* background-color: rgba(0, 0, 0, .1) !important; */
+  background-color: red;
 }

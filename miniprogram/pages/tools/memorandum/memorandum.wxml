@@ -1,0 +1,5 @@
+<!--miniprogram/pages/tools/memorandum/memorandum.wxml-->
+<cu-custom isBack="{{true}}" />
+<view class="container" style="height: calc( 100vh - {{CustomBar}}px );">
+  <text>正在施工👷‍♀️</text>
+</view>

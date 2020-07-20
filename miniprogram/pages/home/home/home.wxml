@@ -1,5 +1,6 @@
 <!--miniprogram/pages/home/home/home.wxml-->
 <cu-custom 
+  wx:if="{{!cart}}"
   isHome 
   loading="{{loading}}"
   modalName="{{modalName}}" 
@@ -61,9 +62,9 @@
       </image>
       <view class="nickName">{{userInfo.nickName?userInfo.nickName:'点击登录'}}</view>
     </button>
-    <view class="noteBox" style="{{noteObj.important?'':'height:250rpx'}}">
+    <!-- <view class="noteBox" style="{{noteObj.important?'':'height:250rpx'}}">
       <note item="{{noteObj}}" wx:if="{{noteObj.important}}" bind:notechange="notechange" />
-    </view>
+    </view> -->
     <view class="outbox">
       <!-- 小工具 -->
       <view class="tools">
@@ -125,4 +126,49 @@
     
   </view>
 </scroll-view>
-
+<view class="model" wx:if="{{cart}}">
+  <view class="box">
+    <view class="userbox">
+      <view class="info">
+        <image src="{{shareData.avatarUrl}}" mode="widthFix"></image>
+        <view>{{shareData.nickName}}</view>
+      </view>
+      <view class="text">
+        请协助我完成该任务
+        <view class="icon"></view>
+      </view>
+    </view>
+  </view>
+  <view class="todoBox" catch:touchmove="touchmove">
+    <view class="content">
+      <!-- <view class="left">
+        <check check="{{check}}" catchtap="changeCheck"/>
+      </view>  -->
+      <scroll-view class="right" scroll-y>
+        <view class="topBlock">
+          <view class="title">{{shareTodo.title}}</view>
+          <view class="note">{{shareTodo.note}}</view>
+          <!-- 子列表 -->
+          <scroll-view class="list" scroll-y>
+            <view wx:for="{{shareTodo.list}}" wx:key class="item" style="{{index==0 && index!=focusList ?'border-top-color:#EDEDEF;':''}} {{index==focusList-1 || index==focusList ?'':'border-bottom-color:#EDEDEF;'}}">
+              <view class="itemLeft">
+                <check-round check="{{item.state}}" catchtap="changeListCheck" data-index="{{index}}"/>
+              </view>
+              <view class="itemRight">
+                <view data-index="{{index}}" style="{{item.state?'color:#999;':''}}" >{{item.content}} </view>
+              </view>
+              <!-- <view class="itemClose">
+                <view class="cuIcon-roundclose" catchtap="delItem" data-index="{{index}}"></view>
+              </view> -->
+            </view>
+          </scroll-view>
+        </view>
+        
+      </scroll-view>
+    </view>
+    <view class="bottomBar">
+      <view class="btn" catchtap="rufuse">拒绝</view>
+      <view class="btn" catchtap="accept">接受</view>
+    </view>
+  </view>
+</view>

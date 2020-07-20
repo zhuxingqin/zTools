@@ -1,0 +1,221 @@
+/* miniprogram/pages/home/doneList/doneList.wxss */
+page{
+  background: #fff;
+}
+.cu-time{
+  font-size: 28rpx !important;
+  font-weight: bold;
+}
+
+.cu-item{
+  padding: 30rpx 30rpx 30rpx 120rpx;
+}
+
+.cu-item>.content{
+  padding: 0 !important;
+  padding-bottom: 20rpx !important;
+  border-radius: 10rpx !important;
+  /* box-shadow: 0rpx 15rpx 20rpx 5rpx rgba(0, 0, 0, .13); */
+  background-color: #fff !important;
+}
+.cu-item>.content .cu-capsule{
+  box-shadow:  0rpx 10rpx 15rpx 5rpx rgba(0, 0, 0, .13);
+}
+
+/* 待办窗口 */
+.todoBox{
+  box-shadow:  0rpx 15rpx 20rpx 5rpx rgba(0, 0, 0, .13);
+  border-radius: 20rpx;
+  padding :20rpx;
+}
+
+.todoBox .content{
+  transition: all .4s;
+  /* padding: 0 20rpx 0 20rpx; */
+  /* height: 500rpx; */
+  display: flex;
+  align-items: flex-start;
+  vertical-align: text-top;
+  justify-content: flex-start;
+}
+.todoBox .content .left{
+  vertical-align: text-top;
+  width: 40rpx;
+  height: 100%;
+  display: inline-block;
+}
+.todoBox .content .right{
+  vertical-align: text-top;
+  display: inline-block;
+  /* height: calc( 100% - 50rpx ); */
+  height: 100%;
+  padding-left: 20rpx;
+  width: calc( 100% - 40rpx );
+}
+.todoBox .content .right .placeholder{
+  color: #cdcdcd;
+}
+.todoBox .content .right .topBlock{
+  /* min-height: calc( 100% - 80rpx ); */
+  width: 100%;
+}
+.todoBox .content .right .topBlock .title{
+  font-size: 32rpx;
+}
+.todoBox .content .right .topBlock .note{
+  margin: 20rpx 0;
+}
+.todoBox .content .right .topBlock .list{
+  margin-bottom: 20rpx;
+  /* border: 2px solid #f1f1f1; */
+  /* background-color: #f1f1f1; */
+  border-radius: 10rpx;
+}
+.todoBox .content .right .topBlock .list>.item.focus{
+  background-color: #F6F6F5;
+  border-radius: 15rpx;
+}
+.todoBox .content .right .topBlock .list>.item.check textarea{
+  color: #666;
+}
+.todoBox .content .right .topBlock .list>.item{
+  transition: all .4s;
+  border-bottom: 1px solid rgba(0, 0, 0, 0);
+  border-top: 1px solid rgba(0, 0, 0, 0);
+  padding: 5rpx 0rpx;
+  
+  display: flex;
+  justify-content: start;
+  align-items: start;
+  border-left-color: rgba(0, 0, 0, 0);
+  border-right-color: rgba(0, 0, 0, 0);
+}
+.todoBox .content .right .topBlock .list>.item>.itemLeft{
+  width: 45rpx;
+  margin-right: 10rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+}
+.todoBox .content .right .topBlock .list>.item>.itemRight{
+  width: calc( 100% - 100rpx );
+}
+.todoBox .content .right .topBlock .list>.item>.itemClose{
+  width: 45rpx;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  font-size: 40rpx;
+}
+.todoBox .content .right .topBlock .list>.item>.itemRight>textarea{
+  padding: 0;
+  width: 100%;
+  font-size: 28rpx;
+}
+.todoBox .content .right .bar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 60rpx;
+}
+.todoBox .content .right .bar>.b-l{
+  display: flex;
+  align-items: center;
+  font-size: 32rpx;
+}
+.workarea{
+  color: #fff;
+  background-color: rgba(91, 156, 247, 0.5);
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  font-size: 28rpx;
+  line-height: 50rpx;
+  margin-right: 15rpx;
+  
+}
+.todoBox .content .right .bar>.b-l .timeText{
+  margin-right:20rpx;
+  color:#999;
+  font-size: 28rpx;
+}
+.todoBox .content .right .bar>.b-l>.icon{
+  margin-right: 10rpx;
+  font-size: 37rpx;
+}
+.todoBox .content .right .bar>.b-l>.noticeText,.todoBox .content .right .bar>.b-l>.cuIcon-noticefill{
+  color: #cdcdcd;
+}
+.todoBox .content .right .bar>.b-r{
+  display: flex;
+  align-items: center;
+  color: #666;
+  font-size: 45rpx;
+}
+.todoBox .content .right .bar>.b-r>.icon:not(:first-child){
+  margin-left: 20rpx;
+}
+.todoBox .bottomBar{
+  width: 100%;
+  height: 80rpx;
+  background-color: #F4F5F6;
+  border-top: 1px solid #E1E3E6;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10rpx;
+}
+.todoBox .partClass{
+  box-shadow:  0rpx 0rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  color: #fff;
+  line-height: 70rpx;
+  position: absolute;
+  z-index: 3;
+  top: -90rpx;
+  right: 20rpx;
+  background-color: #5B9CF7;
+  border-radius: 15rpx;
+  height: 70rpx;
+  padding: 0 20rpx;
+  /* color: #5B9CF7; */
+  font-size: 32rpx;
+  /* margin-left: 20rpx; */
+}
+.todoBox .bottomBar .btn{
+  background-color: #5B9CF7;
+  color: #fff;
+  border-radius: 10rpx;
+  font-size: 35rpx;
+  padding: 0 30rpx;
+  line-height: 60rpx;
+}
+.todoBox .delBtn{
+  border-radius: 15rpx;
+  background-color: #F76759;
+  margin-right: 20rpx;
+  position: absolute;
+  bottom: -90rpx;
+  right: -153rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20rpx;
+  color: #fff;
+  box-shadow: 0rpx 0rpx 30rpx 10rpx rgba(0, 0, 0, .13);
+  transition: all .3s;
+}
+.todoBox .delBtn.confirm{
+  background-color: #F4311F;
+  right: 0rpx;
+}
+.todoBox .delBtn>.icon{
+  font-size: 35rpx;
+  height: 70rpx;
+  width: 70rpx;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.round{
+  border-color: #666 !important;
+  /* color: #999 !important; */
+}

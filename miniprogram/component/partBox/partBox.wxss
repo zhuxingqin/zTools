@@ -1,0 +1,7 @@
+/* component/partBox/partBox.wxss */
+.partBox{
+  width: 250rpx;
+  height: 400rpx;
+  border-radius: 20rpx;
+  margin-right: 20rpx;
+}
